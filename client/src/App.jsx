@@ -4,8 +4,12 @@ import TravelList from "./component/TravelList";
 function App() {
   return (
     <div className="App">
-      <h1>เที่ยวไหนดี</h1>
-      <TravelList />
+      <header>
+        <h1>เที่ยวไหนดี</h1>
+      </header>
+      <main>
+        <TravelList />
+      </main>
     </div>
   );
 }

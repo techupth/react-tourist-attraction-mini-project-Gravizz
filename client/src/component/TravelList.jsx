@@ -10,11 +10,14 @@ function TravelList() {
   }, [keyword]);
 
   const Search = async () => {
-    const result = await axios.get(
-      `http://localhost:4001/trips?keywords=${keyword}`
-    );
-    console.log(result.data.data);
-    setTravelList(result.data.data);
+    try {
+      const result = await axios.get(
+        `http://localhost:4001/trips?keywords=${keyword}`
+      );
+      setTravelList(result.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   const handleTagClick = (tag, event) => {
@@ -25,6 +28,10 @@ function TravelList() {
 
   const handleKeywordChange = (event) => {
     setKeyword(event.target.value);
+  };
+
+  const handleLinkIconClick = (url) => {
+    navigator.clipboard.writeText(url);
   };
 
   return (
@@ -41,7 +48,7 @@ function TravelList() {
           return (
             <div className="TravelItem" key={index}>
               <section className="ImageSection">
-                <img className="MainPic" src={item.photos[0]}></img>
+                <img className="MainPic" src={item.photos[0]} />
               </section>
               <section className="InfoSection">
                 <a className="Title" href={item.url} target="_blank">
@@ -59,6 +66,7 @@ function TravelList() {
                     return (
                       <a
                         className="Tag"
+                        href=""
                         key={tagIndex}
                         onClick={(event) => {
                           handleTagClick(tags, event);
@@ -72,11 +80,21 @@ function TravelList() {
                 <div className="PictureList">
                   {item.photos.map((photo, photoIndex) => {
                     return photoIndex !== 0 ? (
-                      <img className="InfoPic" src={photo}></img>
+                      <img
+                        className="InfoPic"
+                        key={photoIndex}
+                        src={photo}
+                      ></img>
                     ) : undefined;
                   })}
                 </div>
-                {/* <img className="LinkIcon" src="./link-icon.png"></img> */}
+                <img
+                  className="LinkIcon"
+                  src="src/component/link-icon.png"
+                  onClick={() => {
+                    handleLinkIconClick(item.url);
+                  }}
+                />
               </section>
             </div>
           );
