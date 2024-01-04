@@ -3,7 +3,7 @@ import axios from "axios";
 
 function TravelList() {
   const [travelList, setTravelList] = useState([]);
-  const [keyword, setKeyword] = useState();
+  const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
     Search();
@@ -17,6 +17,10 @@ function TravelList() {
     setTravelList(result.data.data);
   };
 
+  const handleClick = (url) => {
+    window.location.href = url;
+  };
+
   const handleKeywordChange = (event) => {
     setKeyword(event.target.value);
   };
@@ -24,15 +28,28 @@ function TravelList() {
   return (
     <>
       <h1>เที่ยวไหนดี</h1>
-      <input type="text" value={keyword} onChange={handleKeywordChange}></input>
+      <input
+        type="text"
+        value={keyword}
+        onChange={handleKeywordChange}
+        placeholder="หาที่เที่ยวกัน"
+      ></input>
       <div className="TravelList">
         {travelList.map((item) => {
           return (
-            <div>
-              <a className="Title" href={item.url} target="_blank">
-                {item.title}
-              </a>
-              <p>{item.description}</p>
+            <div className="TravelItem">
+              <img src={item.photos[0]}></img>
+              <div className="ItemWarper">
+                <a className="Title" href={item.url} target="_blank">
+                  {item.title}
+                </a>
+                <p>
+                  {item.description.slice(0, 100) + "..."}
+                  <a href={item.url} target="_blank">
+                    อ่านต่อ
+                  </a>
+                </p>
+              </div>
             </div>
           );
         })}
