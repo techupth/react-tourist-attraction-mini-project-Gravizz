@@ -17,9 +17,11 @@ function TravelList() {
     setTravelList(result.data.data);
   };
 
-  //   const handleClick = (url) => {
-  //     window.location.href = url;
-  //   };
+  const handleTagClick = (tag, event) => {
+    event.preventDefault();
+    const newKeyword = `${tag} ${keyword}`;
+    setKeyword(newKeyword);
+  };
 
   const handleKeywordChange = (event) => {
     setKeyword(event.target.value);
@@ -27,6 +29,7 @@ function TravelList() {
 
   return (
     <>
+      <h2>ค้นหาที่เที่ยว</h2>
       <input
         type="text"
         value={keyword}
@@ -34,9 +37,9 @@ function TravelList() {
         placeholder="หาที่เที่ยวกัน"
       ></input>
       <div className="TravelList">
-        {travelList.map((item) => {
+        {travelList.map((item, index) => {
           return (
-            <div className="TravelItem">
+            <div className="TravelItem" key={index}>
               <section className="ImageSection">
                 <img className="MainPic" src={item.photos[0]}></img>
               </section>
@@ -52,17 +55,28 @@ function TravelList() {
                 </p>
                 <div className="Tags">
                   Tags:{" "}
-                  {item.tags.map((tags) => {
-                    return <span className="Tag">{tags}</span>;
+                  {item.tags.map((tags, tagIndex) => {
+                    return (
+                      <a
+                        className="Tag"
+                        key={tagIndex}
+                        onClick={(event) => {
+                          handleTagClick(tags, event);
+                        }}
+                      >
+                        {tags}
+                      </a>
+                    );
                   })}
                 </div>
                 <div className="PictureList">
-                  {item.photos.map((photo, index) => {
-                    return index !== 0 ? (
+                  {item.photos.map((photo, photoIndex) => {
+                    return photoIndex !== 0 ? (
                       <img className="InfoPic" src={photo}></img>
                     ) : undefined;
                   })}
                 </div>
+                {/* <img className="LinkIcon" src="./link-icon.png"></img> */}
               </section>
             </div>
           );
