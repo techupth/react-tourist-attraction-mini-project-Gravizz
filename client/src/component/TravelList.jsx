@@ -27,7 +27,6 @@ function TravelList() {
 
   return (
     <>
-      <h1>เที่ยวไหนดี</h1>
       <input
         type="text"
         value={keyword}
@@ -38,8 +37,10 @@ function TravelList() {
         {travelList.map((item) => {
           return (
             <div className="TravelItem">
-              <img className="MainPic" src={item.photos[0]}></img>
-              <div className="ItemWarper">
+              <section className="ImageSection">
+                <img className="MainPic" src={item.photos[0]}></img>
+              </section>
+              <section className="InfoSection">
                 <a className="Title" href={item.url} target="_blank">
                   {item.title}
                 </a>
@@ -49,7 +50,20 @@ function TravelList() {
                     อ่านต่อ
                   </a>
                 </p>
-              </div>
+                <div className="Tags">
+                  Tags:{" "}
+                  {item.tags.map((tags) => {
+                    return <span className="Tag">{tags}</span>;
+                  })}
+                </div>
+                <div className="PictureList">
+                  {item.photos.map((photo, index) => {
+                    return index !== 0 ? (
+                      <img className="InfoPic" src={photo}></img>
+                    ) : undefined;
+                  })}
+                </div>
+              </section>
             </div>
           );
         })}

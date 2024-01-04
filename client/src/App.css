@@ -4,10 +4,33 @@
   align-items: center;
 }
 
+.ImageSection {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.InfoSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .MainPic {
-  width: 300px;
-  height: auto;
+  width: auto;
+  height: 250px;
   margin-right: 20px;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.InfoPic {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-right: 10px;
 }
 
 .TravelItem {
@@ -26,5 +49,20 @@
 }
 
 input {
+  height: 30px;
+  width: 200px;
   margin-bottom: 20px;
+  border: none;
+  border-bottom: 1px solid;
+  padding: 10px 0px 10px 90px;
+  font-size: 1.5rem;
+  margin-bottom: 50px;
+}
+
+.Tag {
+  margin-right: 10px;
+}
+
+h1 {
+  font-size: 5rem;
 }
