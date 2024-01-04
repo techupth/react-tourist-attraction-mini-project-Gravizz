@@ -17,9 +17,9 @@ function TravelList() {
     setTravelList(result.data.data);
   };
 
-  const handleClick = (url) => {
-    window.location.href = url;
-  };
+  //   const handleClick = (url) => {
+  //     window.location.href = url;
+  //   };
 
   const handleKeywordChange = (event) => {
     setKeyword(event.target.value);
@@ -38,7 +38,7 @@ function TravelList() {
         {travelList.map((item) => {
           return (
             <div className="TravelItem">
-              <img src={item.photos[0]}></img>
+              <img className="MainPic" src={item.photos[0]}></img>
               <div className="ItemWarper">
                 <a className="Title" href={item.url} target="_blank">
                   {item.title}

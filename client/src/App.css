@@ -1,0 +1,30 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.MainPic {
+  width: 300px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.TravelItem {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.Title {
+  font-size: 2rem;
+  color: black;
+  text-decoration: none;
+}
+
+.Title:hover {
+  color: green;
+}
+
+input {
+  margin-bottom: 20px;
+}
